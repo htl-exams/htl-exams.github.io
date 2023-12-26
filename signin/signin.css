@@ -61,11 +61,6 @@ form .input .info:hover {
     display: block;
 }
 
-form .input:has(img:hover) input,
-form .input:has(.info:hover) input {
-    background-color: red !important;
-}
-
 #unameForm {
     transform: translate(100%);
 }
