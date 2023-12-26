@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#form,
+#unameForm {
+    height: 50vh;
+    top: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#unameForm {
+    transform: translate(100%);
+}
+
+#form input,
+#unameForm input {
+    background-color: #f3f5f7;
+    height: 22px;
+    width: 200px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+#form button,
+#unameForm button {
+    border: none;
+    background-color: #FF6033;
+    width: 200px;
+    height: 35px;
+    border-radius: 17.5px;
+    margin-bottom: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+#form button a{
+    text-decoration: none;
+    color: #FF6033;
+}
+
+#form button:not(#emailLoginBtn) {
+    color: #FF6033;
+    background-color: white;
+    border: 1px solid #FF6033;
+}
+
+#form.hidden {
+    transition: transform 1s ease-in-out;
+    transform: translate(-100%);
+}
+
+body:has(#form.hidden) #unameForm {
+    transition: transform 1s ease-in-out;
+    transform: translate(0%);
+}
