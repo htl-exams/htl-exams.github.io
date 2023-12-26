@@ -46,6 +46,9 @@ function delUser() {
         // An error ocurred
         // ...
         console.log('User not deleted', auth.currentUser, error.code);
+        if (error.code === 'auth/requires-recent-login') {
+            reauth();
+        }
     });
 
 }
@@ -53,13 +56,18 @@ function delUser() {
 
 function reauth() {
     const user = auth.currentUser;
-    const credential = promptForCredentials();
+    const credential = {
+        email: prompt('Email'),
+        password: prompt('Passwort')
+    };
 
     reauthenticateWithCredential(user, credential).then(() => {
         // User re-authenticated.
+        console.log('reauth success');
     }).catch((error) => {
         // An error ocurred
         // ...
+        console.log('reauth not success', error);
     });
 }
 

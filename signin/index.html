@@ -3,18 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0,">
     <title>HTL Exams</title>
 
     <link rel="stylesheet" href="signin.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <img src="" alt="">
+    <img src="/img/logo.png" alt="">
     <form id="form">
-        <input placeholder="Email" type="email" id="email">
-        <input placeholder="Passwort" type="password" id="password">
-        <button><a href="../resetPasswd">Passwort zurücksetzen</a></button>
+        <div class="input">
+            <input placeholder="Email" type="email" id="email">
+            <img src="/img/info.svg" class="infoImg">
+            <div class="info">
+                Die Email muss gültig sein
+            </div>
+        </div>
+        <div class="input">
+            <input placeholder="Passwort" type="password" id="password">
+        </div>
+        <div class="input">
+            <button><a href="../resetPasswd">Passwort zurücksetzen</a></button>
+        </div>
         <button type="submit" id="emailLoginBtn">Anmelden</button>
         <button id="googleLoginBtn">mit Google fortfahren</button>
     </form>

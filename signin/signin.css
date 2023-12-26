@@ -2,6 +2,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+img {
+    width: 100%;
+    max-height: 20vh;
+    object-fit: contain;
 }
 
 #form,
@@ -17,6 +25,45 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+}
+
+form .input:has(.info) {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 9px;
+}
+
+form .input .info {
+    width: 0px;
+    background-color: #f3f5f7;
+    border: 1px solid #FF6033;
+    border-radius: 6px;
+    position: relative;
+    width: 80px;
+    font-size: x-small;
+    position: absolute;
+    display: none;
+    right: -91px;
+    padding: 3px;
+}
+
+form .input img {
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+form .input:has(img:hover) .info,
+form .input .info:hover {
+    display: block;
+}
+
+form .input:has(img:hover) input,
+form .input:has(.info:hover) input {
+    background-color: red !important;
 }
 
 #unameForm {
@@ -46,7 +93,7 @@ body {
     cursor: pointer;
 }
 
-#form button a{
+#form button a {
     text-decoration: none;
     color: #FF6033;
 }

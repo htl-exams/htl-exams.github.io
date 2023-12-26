@@ -4,6 +4,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+img{
+    width: 100%;
+    max-height: 20vh;
+    object-fit: contain;
+}
+
 #form {
     height: 50vh;
     top: 25vh;

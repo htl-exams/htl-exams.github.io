@@ -61,6 +61,8 @@ function signup() {
             if (error && errorCode !== undefined) {
                 if (errorCode === "auth/email-already-in-use")
                     console.log('falsches Passwort');
+                else if (errorCode === 'auth/weak-password')
+                    console.log('Passwort zu schwach');
 
                 console.error(errorCode);
             }
