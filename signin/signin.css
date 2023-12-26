@@ -6,7 +6,7 @@ body {
     overflow-y: hidden;
 }
 
-img {
+img.logo {
     width: 100%;
     max-height: 20vh;
     object-fit: contain;
@@ -40,12 +40,38 @@ form .input .info {
     border: 1px solid #FF6033;
     border-radius: 6px;
     position: relative;
+    display: none;
     width: 80px;
     font-size: x-small;
     position: absolute;
-    display: none;
-    right: -91px;
+    right: calc(-37px);
+    bottom: 41px;
     padding: 3px;
+}
+
+form .input .info::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    bottom: -10px;
+    margin-left: -10px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #FF6033 transparent transparent;
+}
+
+form .input .info::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    bottom: -8.6px;
+    margin-left: -8.6px;
+    border-width: 9px 9px 0;
+    border-style: solid;
+    border-color: #f3f5f7 transparent transparent;
+
 }
 
 form .input img {
@@ -56,8 +82,9 @@ form .input img {
     left: 2px;
 }
 
-form .input:has(img:hover) .info,
-form .input .info:hover {
+form:not(:has(img:focus)) .input:has(img:hover) .info,
+form:not(:has(img:focus)) .input .info.show,
+form .input:has(img:focus) .info.show {
     display: block;
 }
 

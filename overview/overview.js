@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, deleteUser, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCoCCH7h-56nHoQPCJ_Yymh2y2gkjaPg34",
@@ -13,10 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-const delUserBtn = document.getElementById('delUserBtn');
-console.log(delUserBtn);
 
-delUserBtn.addEventListener('click', () => delUser());
 
 onAuthStateChanged(auth, (user) => {
     if (user && user !== null) {
@@ -35,39 +32,4 @@ onAuthStateChanged(auth, (user) => {
         window.location.href = origin + '/signin';
     }
 });
-
-
-function delUser() {
-    const user = auth.currentUser;
-    deleteUser(user).then(() => {
-        // User deleted.
-        console.log('User deleted');
-    }).catch((error) => {
-        // An error ocurred
-        // ...
-        console.log('User not deleted', auth.currentUser, error.code);
-        if (error.code === 'auth/requires-recent-login') {
-            reauth();
-        }
-    });
-
-}
-
-
-function reauth() {
-    const user = auth.currentUser;
-    const credential = {
-        email: prompt('Email'),
-        password: prompt('Passwort')
-    };
-
-    reauthenticateWithCredential(user, credential).then(() => {
-        // User re-authenticated.
-        console.log('reauth success');
-    }).catch((error) => {
-        // An error ocurred
-        // ...
-        console.log('reauth not success', error);
-    });
-}
 

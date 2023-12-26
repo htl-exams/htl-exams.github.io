@@ -60,9 +60,9 @@ function signup() {
             const errorMessage = error.message;
             if (error && errorCode !== undefined) {
                 if (errorCode === "auth/email-already-in-use")
-                    console.log('falsches Passwort');
+                    showInpErr('password', 'falsches Passwort');
                 else if (errorCode === 'auth/weak-password')
-                    console.log('Passwort zu schwach');
+                    showInpErr('password', 'Das Passwort muss mindestens 6 Zeichen lang sein');
 
                 console.error(errorCode);
             }
@@ -82,6 +82,10 @@ function signin() {
         .catch((error) => {
             if (error.code === "auth/invalid-credential")
                 signup();
+            else if (error.code === 'auth/invalid-email')
+                showInpErr('email', 'Die Email ist nicht gültig');
+            else if (error.code === 'auth/missing-password')
+                showInpErr('password', 'Das Passwort ist notwendig');
             else
                 console.log(error.code);
         });
@@ -136,6 +140,21 @@ function getUsername() {
         updateUser('displayName', uname.value);
         window.location.href = origin + '/overview';
     });
+}
+
+function showInpErr(id, message) {
+    const info = document.querySelector(`div.info#${id}`);
+    const inp = info.parentElement.getElementsByTagName('input')[0];
+    console.log(inp);
+    const defaultMessage = info.innerText;
+    info.classList.add('show');
+    info.innerText = message;
+    if (info.innerText === message) {
+        inp.oninput = () => {
+            info.classList.remove('show');
+            info.innerText = defaultMessage;
+        }
+    }
 }
 
 

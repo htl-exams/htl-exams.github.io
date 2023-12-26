@@ -11,27 +11,34 @@
 </head>
 
 <body>
-    <img src="/img/logo.png" alt="">
+
+    <div class="spitze"></div>
+    <img src="/img/logo.png" class="logo">
     <form id="form">
         <div class="input">
-            <input placeholder="Email" type="email" id="email">
-            <img src="/img/info.svg" class="infoImg">
-            <div class="info">
+            <input placeholder="Email" type="text" id="email">
+            <img src="/img/info.svg" class="infoImg" tabindex="0">
+            <div class="info" id="email">
                 Die Email muss gültig sein
             </div>
         </div>
         <div class="input">
             <input placeholder="Passwort" type="password" id="password">
+            <img src="/img/info.svg" class="infoImg" tabindex="0">
+            <div class="info" id="password">
+                Das Passwort muss mindestens 6 Zeichen lang sein
+            </div>
         </div>
-        <div class="input">
-            <button><a href="../resetPasswd">Passwort zurücksetzen</a></button>
-        </div>
-        <button type="submit" id="emailLoginBtn">Anmelden</button>
-        <button id="googleLoginBtn">mit Google fortfahren</button>
+        <a href="../resetPasswd"> <button>Passwort zurücksetzen</button></a>
+
+        <a><button type="submit" id="emailLoginBtn">Anmelden</button></a>
+        <a><button id="googleLoginBtn">mit Google fortfahren</button></a>
     </form>
 
     <form id="unameForm">
-        <input type="text" name="uname" placeholder="Benutzername" id="uname">
+        <div class="input">
+            <input type="text" name="uname" placeholder="Benutzername" id="uname">
+        </div>
         <button type="submit" id="emailLoginBtn">Anmelden</button>
     </form>
 
