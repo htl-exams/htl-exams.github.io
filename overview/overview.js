@@ -14,6 +14,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 
+const menuBtn = document.getElementById('menuBtn');
+const menu = document.getElementById('menu');
+
 
 onAuthStateChanged(auth, (user) => {
     if (user && user !== null) {
@@ -32,4 +35,20 @@ onAuthStateChanged(auth, (user) => {
         window.location.href = origin + '/signin';
     }
 });
+
+
+
+document.addEventListener('click', e => {
+    console.log(e.target.id);
+    if (e.target.id !== 'menu' && e.target.id !== 'menuItem' && e.target.id!=='menuBtn'&& e.target.id!=='menuBtnItem') {
+        menu.classList.remove('active');
+    }
+});
+menuBtn.addEventListener('click', toogleMenu);
+
+
+function toogleMenu() {
+    menu.classList.toggle('active');
+}
+
 

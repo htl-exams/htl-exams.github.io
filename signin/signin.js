@@ -63,8 +63,15 @@ function signup() {
                     showInpErr('password', 'falsches Passwort');
                 else if (errorCode === 'auth/weak-password')
                     showInpErr('password', 'Das Passwort muss mindestens 6 Zeichen lang sein');
+               else if (error.code === "auth/invalid-credential")
+                    signup();
+                else if (error.code === 'auth/invalid-email')
+                    showInpErr('email', 'Die Email ist nicht gültig');
+                else if (error.code === 'auth/missing-password')
+                    showInpErr('password', 'Das Passwort ist notwendig');
+                else
 
-                console.error(errorCode);
+                    console.error(errorCode);
             }
             // ..
         });

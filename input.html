@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Input</title>
+    <style type="text/css" media="all">
+        .input {
+            height: 65px;
+            margin: 10px 0;
+            width: 200px;
+            border-radius: 10px;
+            border: 2px solid black;
+            background-color: white;
+        }
+
+        .input input {
+            width: inherit;
+            height: 65px;
+            background-color: transparent;
+            position: absolute;
+            border: none;
+            outline: none;
+            padding: 10px 10px;
+            font-size: 25px;
+            z-index: 1;
+        }
+        .input .label {
+            position: absolute;
+            left: 20px;
+            background-color: transparent;
+            font-size: 25px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            z-index: 0;
+            padding: 0 1px;
+            transition: all 0.1s ease-in-out;
+        }
+        .input.active .label,
+        .input:has(input:focus) .label{
+            height: 20px;
+            font-size: 18px;
+            background-color: inherit;
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="input">
+        <div class="label">
+            label
+        </div>
+        <input type="text" />
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+        const inputDiv = document.querySelector('.input');
+        const input = inputDiv.querySelector('input');
+
+      /*  inputDiv.addEventListener('click', ()=> {
+            inputDiv.classList.add('active');
+        });*/
+        
+
+        inputDiv.oninput = ()=> {
+            if (input.value === "")
+                inputDiv.classList.remove('active');
+            else
+                inputDiv.classList.add('active');
+                
+                console.log(input.value);
+        }
+    </script>
+</body>
+</html>

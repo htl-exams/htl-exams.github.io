@@ -84,7 +84,7 @@ form .input img {
 
 form:not(:has(img:focus)) .input:has(img:hover) .info,
 form:not(:has(img:focus)) .input .info.show,
-form .input:has(img:focus) .info.show {
+form .input:has(img:focus) .info {
     display: block;
 }
 
