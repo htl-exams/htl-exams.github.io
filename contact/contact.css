@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #FF6033;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+header .left {
+    display: flex;
+}
+
+header .left {
+    display: flex;
+    align-items: center;
+    padding-right: 50px;
+    flex-wrap: wrap;
+}
+
+header .left input {
+    background-color: white;
+    color: #FF6033;
+    border: none;
+    margin: 20px 20px;
+}
+
+header .left input:focus {
+    outline: none;
+}
+
+header h1 {
+    color: white;
+    cursor: default;
+}
+
+header .menuBtn {
+    background-color: transparent;
+    border: none;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+header .menu {
+    position: absolute;
+}
+
+body .menu {
+    max-width: 70%;
+    width: 300px;
+    height: 100vh;
+    display: block;
+    right: 100vw;
+    top: 0px;
+    position: fixed;
+    transform: translate(0);
+    background-color: #f3f5f7;
+    transition: all 0.5s ease-in-out;
+}
+
+body .menu img {
+    width: 90%;
+    margin: 0 5%;
+    border-bottom: 1px solid #FF6033;
+}
+
+body .menu .item {
+    width: calc(90% - 20px);
+    margin: 0 5%;
+    height: 8%;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #FF6033;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.menu div:first-child {
+    border-top: 1px solid #FF6033;
+    background-color: red;
+}
+
+.item:first-child {
+    background-color: red;
+}
+
+body .menu .item a {
+    text-decoration: none;
+    color: #FF6033;
+}
+
+body .menu.active {
+    transform: translate(100%);
+}
+
+.text {
+    padding: 15px;
+    color: black;
+    background-color: transparent;
+    margin-top: 10%;
+    border-radius: 20px;
+    border: 1px solid #FF6033;
+    width: 80%;
+    max-width: 50vh;
+}
+
+form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding:10% 10% 0 10%;
+    align-items: center;
+}
+
+form input,
+form textarea,
+form button {
+    margin: 5px 0;
+    padding: 15px 10px;
+    border-radius: 15px;
+    border: 1px solid black;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 50vh;
+    width: 100%;
+}
+
+form input:focus,
+form textarea:focus {
+    border: 1px solid #FF6033;
+    outline: 2px solid #FF6033;
+}
+
+form button {
+    background-color: #FF6033;
+    border: none;
+    color: white;
+}
+
+form div.success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00b400;
+}
+
+.hide {
+    display: none !important;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

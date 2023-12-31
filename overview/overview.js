@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+import { getStorage, ref, uploadBytes, listAll } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCoCCH7h-56nHoQPCJ_Yymh2y2gkjaPg34",
@@ -12,10 +13,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const storage = getStorage(app);
 
 
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
+const fileInp = document.getElementById('fileInp');
 
 
 onAuthStateChanged(auth, (user) => {
@@ -40,7 +43,7 @@ onAuthStateChanged(auth, (user) => {
 
 document.addEventListener('click', e => {
     console.log(e.target.id);
-    if (e.target.id !== 'menu' && e.target.id !== 'menuItem' && e.target.id!=='menuBtn'&& e.target.id!=='menuBtnItem') {
+    if (e.target.id !== 'menu' && e.target.id !== 'menuItem' && e.target.id !== 'menuBtn' && e.target.id !== 'menuBtnItem') {
         menu.classList.remove('active');
     }
 });
@@ -50,5 +53,43 @@ menuBtn.addEventListener('click', toogleMenu);
 function toogleMenu() {
     menu.classList.toggle('active');
 }
+
+
+fileInp.addEventListener('input', () => {
+    upload(fileInp);
+});
+
+
+
+function upload(input) {
+    const fileItem = input.files[0];
+    const fileName = fileItem.name;
+
+    let storageRef = ref(storage, `images/${fileName}`);
+    uploadBytes(storageRef, fileItem).then((snapshot) => {
+        console.log(snapshot);
+        console.log('Uploaded a blob or file!');
+    });
+
+
+}
+
+const listRef = ref(storage, 'images');
+listAll(listRef)
+    .then((res) => {
+        res.prefixes.forEach((folderRef) => {
+            // All the prefixes under listRef.
+            // You may call listAll() recursively on them.
+            console.loog(folderRef);
+        });
+        res.items.forEach((itemRef) => {
+            // All the items under listRef.
+            console.log(itemRef);
+        });
+    }).catch((error) => {
+        // Uh-oh, an error occurred!
+        console.error(error);
+    });
+
 
 
