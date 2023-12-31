@@ -140,6 +140,7 @@ form button {
     background-color: #FF6033;
     border: none;
     color: white;
+    cursor: pointer;
 }
 
 form div.success {
