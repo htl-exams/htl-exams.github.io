@@ -15,9 +15,12 @@ const auth = getAuth();
 
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
-const messageForm = document.querySelector('#messageForm');
-const successMessage = document.querySelector('form div.success');
-console.log(menu);
+const cards = {
+    email: document.querySelector('body .list .list .item#email'),
+    passwd: document.querySelector('body .list .list .item#passwd'),
+    uname: document.querySelector('body .list .list .item#uname'),
+    delAcc: document.querySelector('body .list .list .item#delAcc')
+}
 
 onAuthStateChanged(auth, (user) => {
     if (user && user !== null) {
@@ -25,6 +28,9 @@ onAuthStateChanged(auth, (user) => {
         // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
         console.log('user found', user);
+
+
+
         // ...
     } else {
         // User is signed out
@@ -43,26 +49,14 @@ menuBtn.addEventListener('click', toogleMenu);
 
 
 function toogleMenu() {
-    console.log('open');
     menu.classList.toggle('active');
 }
 
-messageForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.querySelector('#messageForm #email').value;
-    const subject = document.querySelector('#messageForm #subject').value;
-    const message = document.querySelector('#messageForm textarea').value;
+window.onload = () => {
+    Object.keys(cards).forEach(key => {
+        cards[key].addEventListener('click', e => {
+            window.location.href = cards[key].dataset.url;
+        })
+    });
+}
 
-    const r = new XMLHttpRequest();
-    r.open("POST", "https://275b5a8bf8310ffbe1ebc39373a30973.serveo.net/mailer", true);
-    r.onreadystatechange = function () {
-        if (r.readyState != 4 || r.status != 200) return;
-        successMessage.classList.remove('hide');
-        if (r.responseText === 'success') {
-            setTimeout(() => {
-                successMessage.classList.add('hide');
-            }, 5000);
-        }
-    };
-    r.send(JSON.stringify({ subject: subject, message: message, sender: email }));
-});

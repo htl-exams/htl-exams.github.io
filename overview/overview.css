@@ -89,9 +89,21 @@ body .menu .item {
     background-color: red;
 }
 
-body .menu .item a {
+body .menu .item a,
+body .menu .item {
     text-decoration: none;
     color: #FF6033;
+}
+
+body .menu .item.signout {
+    border: 1px solid #FF6033;
+    position: absolute;
+    bottom: 10px;
+    height: 5%;
+    border-radius: 2.5vh;
+    background-image: url('../img/logout_orange.svg');
+    background-position: right;
+    background-repeat: no-repeat;
 }
 
 body .menu.active {

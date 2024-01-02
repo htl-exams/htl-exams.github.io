@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0,">
+    <title>HTL Exams</title>
+
+    <link rel="stylesheet" href="email.css">
+    <link rel="shortcut icon" href="../../img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="spitze"></div>
+    <img src="../../img/logo.png" class="logo">
+    <form id="form">
+        <div class="input">
+            <input placeholder="Email" type="text" id="email">
+            <img src="../../img/info.svg" class="infoImg" tabindex="0">
+            <div class="info" id="email">
+                Die Email muss gültig sein
+            </div>
+        </div>
+        <div class="input">
+            <input placeholder="Passwort" type="password" id="password">
+            <img src="../../img/info.svg" class="infoImg" tabindex="0">
+            <div class="info" id="password">
+                Das Passwort muss mindestens 6 Zeichen lang sein
+            </div>
+        </div>
+
+        <a href="../"> <button>Abbrechen</button></a>
+        <a><button type="submit" id="emailLoginBtn">Email ändern</button></a>
+    </form>
+
+    <div class="toast">
+        <div class="text"></div>
+    </div>
+
+    <script src="email.js" type="module"></script>
+</body>
+
+</html>
