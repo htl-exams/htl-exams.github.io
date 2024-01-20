@@ -1,0 +1,120 @@
+form {
+    height: 50vh;
+    top: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 30px);
+}
+
+form .input:has(.info) {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 9px;
+}
+
+form .input .info {
+    width: 0px;
+    background-color: #f3f5f7;
+    border: 1px solid #FF6033;
+    border-radius: 6px;
+    position: relative;
+    display: none;
+    width: 80px;
+    font-size: x-small;
+    position: absolute;
+    right: calc(-37px);
+    bottom: 41px;
+    padding: 3px;
+}
+
+form .input .info::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    bottom: -10px;
+    margin-left: -10px;
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #FF6033 transparent transparent;
+}
+
+form .input .info::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    bottom: -8.6px;
+    margin-left: -8.6px;
+    border-width: 9px 9px 0;
+    border-style: solid;
+    border-color: #f3f5f7 transparent transparent;
+
+}
+
+form .input img {
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+form:not(:has(img:focus)) .input:has(img:hover) .info,
+form:not(:has(img:focus)) .input .info.show,
+form .input:has(img:focus) .info {
+    display: block;
+}
+
+form input{
+    background-color: #f3f5f7;
+    height: 22px;
+    width: 200px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+form button{
+    border: none;
+    background-color: #FF6033;
+    width: 200px;
+    height: 35px;
+    border-radius: 17.5px;
+    margin-bottom: 12px;
+    color: white;
+    cursor: pointer;
+}
+
+form a:not(:has(button)){
+    text-decoration: none;
+    height: 33px;
+    width: 198px;
+    border-radius: 17.5px;
+    margin-bottom: 12px;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form a:not(:has(button)),
+form .contrast{
+    background-color: white;
+    color: #FF6033;
+    border: 1px solid #FF6033;
+}
+ 
+form.hidden {
+    transition: transform 1s ease-in-out;
+    transform: translate(-100%);
+}
+

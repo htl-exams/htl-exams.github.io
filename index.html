@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTL Exams</title>
+
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <script type="module">
+        import { tryToLogin } from './js/auth.js';
+
+        tryToLogin(user => window.location.href = origin + '/overview',
+            () => window.location.href = origin + '/signin');
+    </script>
+</body>
+
+</html>
