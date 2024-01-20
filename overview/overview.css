@@ -23,3 +23,7 @@
 .floatingActionBtn input {
     display: none;
 }
+
+img{
+    cursor: pointer;
+}

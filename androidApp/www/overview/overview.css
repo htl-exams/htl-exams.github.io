@@ -1,8 +1,0 @@
-@import url("../components/menu/menu.css");
-@import url("../css/layout.css");
-@import url("../css/header.css");
-
-#search {
-    height: 25px;
-    border-radius: 8px;
-}
