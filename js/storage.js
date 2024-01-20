@@ -16,34 +16,23 @@ function upload(input) {
 }
 
 
-async function list(folder = 'images') {
+async function list(folder = 'images', success) {
     const listRef = ref(storage, folder);
-    const items = [];
     await listAll(listRef)
         .then((res) => {
-            /* res.prefixes.forEach((folderRef) => {
-                console.log(folderRef);
-            }); */
             res.items.forEach((itemRef) => {
-                items.push(itemRef);
                 const location = itemRef['_location'];
-                downloadImg(location.path);
+                success(location.path);
             });
         }).catch((error) => {
             console.error(error);
         });
-    return items;
-
 }
 
-async function downloadImg(path) {
+async function getImgURL(path, success) {
     await getDownloadURL(ref(storage, path))
         .then((url) => {
-            console.log(url);
-            const img = new Image();
-            img.src = url;
-            img.addEventListener('click', () => window.location.href = window.origin + '/imgView/index.html?src=' + url);
-            document.querySelector('body').appendChild(img);
+            success(url);
         })
         .catch((error) => {
             // Handle any errors
@@ -52,5 +41,6 @@ async function downloadImg(path) {
 
 export {
     upload,
-    list
+    list,
+    getImgURL
 }

@@ -24,6 +24,15 @@
     display: none;
 }
 
+.imgContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 img{
     cursor: pointer;
+    min-width: 200px;
+    /* max-width: 300px; */
+    flex: 1;
+    margin: 5px;
 }
