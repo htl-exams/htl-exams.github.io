@@ -42,6 +42,7 @@ async function downloadImg(path) {
             console.log(url);
             const img = new Image();
             img.src = url;
+            img.addEventListener('click', () => window.location.href = window.origin + '/imgView/index.html?src=' + url);
             document.querySelector('body').appendChild(img);
         })
         .catch((error) => {
