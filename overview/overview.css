@@ -7,8 +7,8 @@
     border-radius: 8px;
 }
 
-.floatingActionBtn  svg{
-    height: 80px ;
+.floatingActionBtn svg {
+    height: 80px;
     width: 80px;
     background-color: #FF6033;
     border: none;
@@ -24,12 +24,13 @@
     display: none;
 }
 
-.imgContainer{
+.imgContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-img{
+
+img {
     cursor: pointer;
     min-width: 200px;
     /* max-width: 300px; */
