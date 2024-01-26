@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>move effect</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .imgContainer{
+            max-width: 90vw;
+            height: 120vw;
+            max-height: 70vh;
+        }
+        .imgContainer .img{
+            height: 100%;
+            width: 100%;
+            background-color: contain;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="imgContainer">
+        <div style="background-image: url=('../img/logo.png');" alt="">
+        <div style="background-image: url=('../img/logo.png');" alt="">
+        <div style="background-image: url=('../img/logo.png');" alt="">
+        <div style="background-image: url=('../img/logo.png');" alt="">
+        <div style="background-image: url=('../img/logo.png');" alt="">
+        <div style="background-image: url=('../img/logo.png');" alt="">
+    </div>
+
+
+    <script>
+        const imgs = document.querySelectorAll('.imgView .actualImg img');
+        const chevrons = document.querySelectorAll('.imgGallery svg.left, .imgGallery svg.right');
+        const progress = document.querySelector('.imgView progress');
+
+        console.log(chevrons);
+        let actual = 0;
+        let diashowInterval = 0;
+        let startDiashowTimeout = 0;
+        function move(direction) {
+            console.log('move');
+            let moveDistance;
+            switch (direction) {
+                case "left": if (actual !== 0) actual++; else actual = -(imgs.length - 1); break;
+                case "right": if (actual !== -(imgs.length - 1)) actual--; else actual = 0; break;
+                default: console.error(direction); break;
+            }
+            moveDistance = + actual * 100 + "%";
+            console.log(moveDistance);
+            imgs.forEach((img) => {
+                img.style.transform = 'translateX(' + moveDistance + ')';
+            });
+            progress.value = 100 / imgs.length * (-actual + 1);
+        }
+        function startDiashow() {
+            diashowInterval = setInterval(() => { move('right'); }, 2000);
+        }
+        function stopDiashow() {
+            clearInterval(diashowInterval);
+            clearTimeout(startDiashowTimeout);
+            startDiashowTimeout = setTimeout(startDiashow, 10000);
+        }
+        chevrons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                stopDiashow();
+                move(btn.classList.value);
+            });
+        });
+        window.onload = startDiashow();
+        document.onkeydown = (e) => {
+            if (e.key === "ArrowRight") { stopDiashow(); move('right'); }
+            else if (e.key === "ArrowLeft") { stopDiashow(); move('left'); }
+        }
+    </script>
+</body>
+
+</html>

@@ -31,9 +31,10 @@
     justify-content: center;
 }
 
-img {
+.imgContainer img {
     cursor: pointer;
-    height: 300px;
+    max-height: 300px;
+    max-width: 500px;
     flex: 1;
     margin: 5px;
     max-width: 90%;

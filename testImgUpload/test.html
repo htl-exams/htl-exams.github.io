@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type=file] {
+            display: none;
+        }
+
+        label#imgInput {
+            margin: 20px 0;
+            background: url('../img/image.svg') calc(50%) center no-repeat, url('../img/add_icon.svg') calc(50% - 100px) center no-repeat;
+            background-size: contain;
+            width: 100%;
+            height: calc(80vh - 80px - 8vw - 200px);
+        }
+
+        .popup {
+            display: none;
+            border: 1px solid black;
+            height: calc(80vh - 80px);
+            width: 80vw;
+            border-radius: 10px;
+            position: fixed;
+            top: calc(80px + 10vh);
+            left: 10vw;
+            flex-direction: column;
+            align-items: center center no-repeat;
+        }
+
+        .popup.show {
+            display: flex;
+        }
+
+        body:has(.popup.load),
+        body:has(.popup.load) * {
+            cursor: progress;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="showPopup">Popup</button>
+
+    <div class="popup">
+        <label for="fileInput" id="imgInput">
+            <input type="file" accept=".jpg, .png, .jpeg, .gif" id="fileInput">
+        </label>
+
+        <button id="upload">Hochladen</button>
+        <button id="cancel">Abbrechen</button>
+    </div>
+
+    <script type="module">
+        import * as storage from '../js/storage.js';
+
+        const input = document.querySelector('input');
+        const inputLabel = document.querySelector('#imgInput');
+        const popup = document.querySelector('.popup');
+        const showPopup = document.querySelector('#showPopup');
+        const uploadBtn = document.querySelector('#upload');
+        const cancelBtn = document.querySelector('#cancel');
+
+        input.oninput = () => {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                inputLabel.style.backgroundImage = `url(${e.target.result})`;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+            uploadBtn.addEventListener('click', upload);
+
+        }
+
+        showPopup.addEventListener('click', () => {
+            popup.classList.toggle('show');
+        });
+
+        cancelBtn.addEventListener('click', () => popup.classList.remove('show'));
+
+        function upload() {
+            popup.classList.add('load');
+            storage.upload(input, () => {
+                console.log('uploaded');
+                popup.classList.remove('show');
+                popup.classList.remove('load');
+                inputLabel.style.backgroundImage = `url('../img/image.svg')`;
+            });
+            uploadBtn.removeEventListener('click', upload);
+        };
+    </script>
+</body>
+
+</html>
